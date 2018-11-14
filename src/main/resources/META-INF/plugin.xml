@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>fun.bookish.plugin.archer</id>
+    <name>Archer</name>
+    <vendor email="864426487@qq.com" url="http://blog.bookish.fun">Xinda</vendor>
+
+    <description>代码生成器</description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <group id="fun.bookish.plugin.archer.actions.GroupedActions" text="Archer代码生成" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <action class="fun.bookish.plugin.archer.actions.MapperGeneratorAction"
+                    id="fun.bookish.plugin.archer.actions.MapperGeneratorAction"
+                    text="生成mapper接口"
+                    description="生成mapper接口">
+            </action>
+        </group>
+    </actions>
+</idea-plugin>
