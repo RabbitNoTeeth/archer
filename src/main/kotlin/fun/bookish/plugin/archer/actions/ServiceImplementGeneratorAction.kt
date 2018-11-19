@@ -20,21 +20,20 @@ import com.intellij.psi.util.PsiTreeUtil
 class ServiceImplementGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.ServiceImplementGeneratorAction") {
 
     override fun actionPerformed(event: AnActionEvent) {
+        val project = event.project!!
         val editor = event.getData(CommonDataKeys.EDITOR)
         val psiFile = event.getData(LangDataKeys.PSI_FILE)
         val element = psiFile!!.findElementAt(editor!!.caretModel.offset)
         val psiClass = PsiTreeUtil.getParentOfType(element, PsiClass::class.java)!!
 
-        // 包名
-        val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
         // model实体类名
         val modelName = psiClass.name!!
         // service接口实现类文件内容
-        val content = ServiceImplementTemplate.generate(packageName, modelName)
+        val content = ServiceImplementTemplate.generate(project, psiClass)
         // 生成service接口实现类文件
-        WriteCommandAction.runWriteCommandAction(event.project){
+        WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
-                val mapperInterfaceFile = PsiFileFactory.getInstance(event.project)
+                val mapperInterfaceFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}ServiceImpl.java", JavaFileType.INSTANCE, content)
                 psiFile.parent!!.add(mapperInterfaceFile)
             }

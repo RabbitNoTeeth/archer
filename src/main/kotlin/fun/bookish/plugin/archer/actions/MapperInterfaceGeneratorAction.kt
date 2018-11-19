@@ -28,8 +28,6 @@ class MapperInterfaceGeneratorAction : AnAction("`fun`.bookish.plugin.archer.act
         val element = psiFile!!.findElementAt(editor!!.caretModel.offset)
         val psiClass = PsiTreeUtil.getParentOfType(element, PsiClass::class.java)!!
 
-        // 包名
-        val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
         // model实体类名
         val modelName = psiClass.name!!
         // mapper接口文件内容
