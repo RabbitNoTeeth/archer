@@ -18,10 +18,20 @@
     <actions>
         <group id="fun.bookish.plugin.archer.actions.GroupedActions" text="Archer代码生成" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <action class="fun.bookish.plugin.archer.actions.MapperGeneratorAction"
-                    id="fun.bookish.plugin.archer.actions.MapperGeneratorAction"
-                    text="生成mapper接口"
-                    description="生成mapper接口">
+            <action class="fun.bookish.plugin.archer.actions.MapperInterfaceGeneratorAction"
+                    id="fun.bookish.plugin.archer.actions.MapperInterfaceGeneratorAction"
+                    text="mapper接口"
+                    description="mapper接口">
+            </action>
+            <action class="fun.bookish.plugin.archer.actions.ServiceInterfaceGeneratorAction"
+                    id="fun.bookish.plugin.archer.actions.ServiceInterfaceGeneratorAction"
+                    text="service接口"
+                    description="service接口">
+            </action>
+            <action class="fun.bookish.plugin.archer.actions.ServiceImplementGeneratorAction"
+                    id="fun.bookish.plugin.archer.actions.ServiceImplementGeneratorAction"
+                    text="service实现"
+                    description="service实现">
             </action>
         </group>
     </actions>
