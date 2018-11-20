@@ -1,6 +1,5 @@
 package `fun`.bookish.plugin.archer.utils
 
-import `fun`.bookish.plugin.archer.templates.MapperInterfaceTemplate
 import java.util.regex.Pattern
 
 

@@ -1,6 +1,6 @@
 package `fun`.bookish.plugin.archer.actions
 
-import `fun`.bookish.plugin.archer.templates.ServiceInterfaceTemplate
+import `fun`.bookish.plugin.archer.template.Template
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -10,7 +10,10 @@ import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiFileFactory
+import com.intellij.psi.search.GlobalSearchScope
+import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.psi.util.PsiTreeUtil
+import java.util.HashMap
 
 
 /**
@@ -25,10 +28,21 @@ class ServiceInterfaceGeneratorAction : AnAction("`fun`.bookish.plugin.archer.ac
         val element = psiFile!!.findElementAt(editor!!.caretModel.offset)
         val psiClass = PsiTreeUtil.getParentOfType(element, PsiClass::class.java)!!
 
-        // model实体类名
+        // 模版变量值
+        val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
         val modelName = psiClass.name!!
-        // service接口文件内容
-        val content = ServiceInterfaceTemplate.generate(project, psiClass)
+        val modelQualifiedName = psiClass.qualifiedName!!
+        val baseServiceQualifiedName = PsiShortNamesCache.getInstance(project)
+                                                        .getClassesByName("BaseService", GlobalSearchScope.projectScope(project))[0]
+                                                        .qualifiedName!!
+        val data = HashMap<String, String>().apply {
+            put("packageName", packageName)
+            put("modelName", modelName)
+            put("modelQualifiedName", modelQualifiedName)
+            put("baseServiceQualifiedName", baseServiceQualifiedName)
+        }
+        // 进行模版变量替换
+        val content = Template.get("ServiceInterface.ftl", data).replace("\r\n", "\n")
         // 生成service接口文件
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
