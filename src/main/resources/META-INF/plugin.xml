@@ -23,6 +23,11 @@
                     text="mapper接口"
                     description="mapper接口">
             </action>
+            <action class="fun.bookish.plugin.archer.actions.MapperXmlGeneratorAction"
+                    id="fun.bookish.plugin.archer.actions.MapperXmlGeneratorAction"
+                    text="mapper xml"
+                    description="mapper xml">
+            </action>
             <action class="fun.bookish.plugin.archer.actions.ServiceInterfaceGeneratorAction"
                     id="fun.bookish.plugin.archer.actions.ServiceInterfaceGeneratorAction"
                     text="service接口"
