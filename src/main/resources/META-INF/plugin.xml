@@ -33,6 +33,11 @@
                     text="service实现"
                     description="service实现">
             </action>
+            <action class="fun.bookish.plugin.archer.actions.ControllerGeneratorAction"
+                    id="fun.bookish.plugin.archer.actions.ControllerGeneratorAction"
+                    text="controller"
+                    description="controller">
+            </action>
         </group>
     </actions>
 </idea-plugin>

@@ -35,11 +35,15 @@ class ServiceInterfaceGeneratorAction : AnAction("`fun`.bookish.plugin.archer.ac
         val baseServiceQualifiedName = PsiShortNamesCache.getInstance(project)
                                                         .getClassesByName("BaseService", GlobalSearchScope.projectScope(project))[0]
                                                         .qualifiedName!!
+        val buttonQualifiedName = PsiShortNamesCache.getInstance(project)
+                                                        .getClassesByName("Button", GlobalSearchScope.projectScope(project))[0]
+                                                        .qualifiedName!!
         val data = HashMap<String, String>().apply {
             put("packageName", packageName)
             put("modelName", modelName)
             put("modelQualifiedName", modelQualifiedName)
             put("baseServiceQualifiedName", baseServiceQualifiedName)
+            put("buttonQualifiedName", buttonQualifiedName)
         }
         // 进行模版变量替换
         val content = Template.get("ServiceInterface.ftl", data).replace("\r\n", "\n")

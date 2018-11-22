@@ -17,9 +17,9 @@ import java.util.HashMap
 
 
 /**
- * 生成service接口实现类的action
+ * 生成controller的action
  */
-class ServiceImplementGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.ServiceImplementGeneratorAction") {
+class ControllerGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.ControllerGeneratorAction") {
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project!!
@@ -33,43 +33,35 @@ class ServiceImplementGeneratorAction : AnAction("`fun`.bookish.plugin.archer.ac
         val modelName = psiClass.name!!
         val modelVariableName = modelName[0].toLowerCase() + modelName.substring(1)
         val modelQualifiedName = psiClass.qualifiedName!!
-        val baseMapperQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BaseMapper", GlobalSearchScope.projectScope(project))[0]
+        val readAccessQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("ReadAccess", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
-        val mapperQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("${modelName}Mapper", GlobalSearchScope.projectScope(project))[0]
+        val writeAccessQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("WriteAccess", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val serviceQualifiedName = PsiShortNamesCache.getInstance(project)
                 .getClassesByName("${modelName}Service", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
-        val baseServiceQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BaseService", GlobalSearchScope.projectScope(project))[0]
-                .qualifiedName!!
-        val abstractBaseServiceQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("AbstractBaseService", GlobalSearchScope.projectScope(project))[0]
-                .qualifiedName!!
-        val buttonQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("Button", GlobalSearchScope.projectScope(project))[0]
+        val jsonResultQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("JsonResult", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val data = HashMap<String, String>().apply {
             put("packageName", packageName)
             put("modelName", modelName)
             put("modelQualifiedName", modelQualifiedName)
-            put("baseServiceQualifiedName", baseServiceQualifiedName)
+            put("readAccessQualifiedName", readAccessQualifiedName)
             put("modelVariableName", modelVariableName)
-            put("baseMapperQualifiedName", baseMapperQualifiedName)
-            put("mapperQualifiedName", mapperQualifiedName)
-            put("abstractBaseServiceQualifiedName", abstractBaseServiceQualifiedName)
+            put("writeAccessQualifiedName", writeAccessQualifiedName)
+            put("jsonResultQualifiedName", jsonResultQualifiedName)
             put("serviceQualifiedName", serviceQualifiedName)
-            put("buttonQualifiedName", buttonQualifiedName)
         }
         // 进行模版变量替换
-        val content = Template.get("ServiceImplement.ftl", data).replace("\r\n", "\n")
+        val content = Template.get("Controller.ftl", data).replace("\r\n", "\n")
         // 生成service接口实现类文件
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
                 val mapperInterfaceFile = PsiFileFactory.getInstance(project)
-                        .createFileFromText("${modelName}ServiceImpl.java", JavaFileType.INSTANCE, content)
+                        .createFileFromText("${modelName}Controller.java", JavaFileType.INSTANCE, content)
                 psiFile.parent!!.add(mapperInterfaceFile)
             }
         }

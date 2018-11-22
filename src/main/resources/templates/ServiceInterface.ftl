@@ -1,8 +1,10 @@
 package ${packageName};
 
-import com.sunvua.alan.base.model.Button;
+import ${buttonQualifiedName};
 import ${baseServiceQualifiedName};
 import ${modelQualifiedName};
+
+import java.util.List;
 
 public interface ${modelName}Service extends BaseService<${modelName}> {
 

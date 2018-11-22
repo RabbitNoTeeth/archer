@@ -2,13 +2,15 @@ package ${packageName};
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sunvua.alan.base.model.Button;
+import ${buttonQualifiedName};
 import ${modelQualifiedName};
 import ${baseMapperQualifiedName};
 import ${mapperQualifiedName};
 import ${serviceQualifiedName};
 import ${baseServiceQualifiedName};
 import ${abstractBaseServiceQualifiedName};
+
+import java.util.List;
 
 @Service
 public class ${modelName}ServiceImpl extends AbstractBaseService<${modelName}> implements ${modelName}Service {
