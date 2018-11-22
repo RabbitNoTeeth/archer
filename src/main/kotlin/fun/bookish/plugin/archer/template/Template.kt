@@ -12,7 +12,7 @@ object Template {
      */
     private fun loadTemplate(name: String): String{
         if(cache[name] == null){
-            val inputStream = this.javaClass.classLoader.getResourceAsStream("template/$name")
+            val inputStream = this.javaClass.classLoader.getResourceAsStream("templates/$name")
             inputStream.use { ins ->
                 ByteArrayOutputStream().use {out ->
                     var c = ins.read()

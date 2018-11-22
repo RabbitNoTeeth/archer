@@ -2,6 +2,7 @@ package ${packageName};
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.sunvua.alan.base.model.Button;
 import ${modelQualifiedName};
 import ${baseMapperQualifiedName};
 import ${mapperQualifiedName};
@@ -18,6 +19,26 @@ public class ${modelName}ServiceImpl extends AbstractBaseService<${modelName}> i
     @Override
     public BaseMapper<${modelName}> getMapper() {
         return ${modelVariableName}Mapper;
+    }
+
+    @Override
+    public List<Button> getToolBarButtons() {
+        return baseGetToolbar("", readBtns -> {
+
+        }, writeBtns -> {
+            writeBtns.add(Button.TOOLBAR_ADD);
+            writeBtns.add(Button.TOOLBAR_DELETE_BATCH);
+        });
+    }
+
+    @Override
+    public List<Button> getOperatingButtons() {
+        return baseGetOperatingButtons("", readBtns -> {
+            readBtns.add(Button.OPERATION_INFO);
+        }, writeBtns -> {
+            writeBtns.add(Button.OPERATION_EDIT);
+            writeBtns.add(Button.OPERATION_DELETE);
+        });
     }
 
 }
