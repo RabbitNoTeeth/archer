@@ -18,10 +18,10 @@
     <!-- 插入 -->
     <insert id="baseSave" parameterType="${modelQualifiedName}">
         insert into t_tableName
-        (id, create_time, create_by, update_time, update_by, remarks, sort,
+        (id, create_time, create_by, update_time, update_by, remarks, sort
         ${baseSaveColumns} )
         values
-        (#{id}, #{createTime}, #{createBy}, #{updateTime}, #{updateBy}, #{remarks}, #{sort},
+        (#{id}, #{createTime}, #{createBy}, #{updateTime}, #{updateBy}, #{remarks}, #{sort}
         ${baseSaveValues})
     </insert>
 
