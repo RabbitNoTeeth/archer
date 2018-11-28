@@ -25,7 +25,7 @@
         ${baseSaveValues})
     </insert>
 
-    <#-- 批量插入 -->
+    <!-- 批量插入 -->
     <insert id="baseSaveBatch" parameterType="${modelQualifiedName}">
         insert into t_tableName
         (id, create_time, create_by, update_time, update_by, remarks, sort
