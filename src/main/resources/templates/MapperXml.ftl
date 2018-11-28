@@ -25,6 +25,18 @@
         ${baseSaveValues})
     </insert>
 
+    <#-- 批量插入 -->
+    <insert id="baseSaveBatch" parameterType="${modelQualifiedName}">
+        insert into t_tableName
+        (id, create_time, create_by, update_time, update_by, remarks, sort
+        ${baseSaveColumns})
+        values
+        <foreach collection="beans" index="index" item="item" open="" separator="," close="">
+            (#{item.id}, #{item.createTime}, #{item.createBy}, #{item.updateTime}, #{item.updateBy}, #{item.remarks}, #{item.sort}
+            ${baseSaveBatchValues})
+        </foreach>
+    </insert>
+
     <!-- 更新 -->
     <update id="baseUpdate" parameterType="${modelQualifiedName}">
         update t_tableName

@@ -43,6 +43,7 @@ class MapperXmlGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.M
         var resultItems = ""
         var baseSaveColumns = ""
         var baseSaveValues = ""
+        var baseSaveBatchValues = ""
         var baseUpdateItems = ""
         psiClass.fields.forEach { field ->
             val fieldName = field.name
@@ -50,6 +51,7 @@ class MapperXmlGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.M
                 resultItems += "\n\t\t<result property=\"$fieldName\" column=\"${fieldName2ColumnName(fieldName)}\"/>"
                 baseSaveColumns += ",${fieldName2ColumnName(fieldName)}"
                 baseSaveValues += ",#{$fieldName}"
+                baseSaveBatchValues +=",#{item.$fieldName}"
                 baseUpdateItems += if(isStringType(field)){
                     "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\t${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
                 }else{
@@ -65,6 +67,7 @@ class MapperXmlGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.M
             put("resultItems", resultItems)
             put("baseSaveColumns", baseSaveColumns)
             put("baseSaveValues", baseSaveValues)
+            put("baseSaveBatchValues", baseSaveBatchValues)
             put("baseUpdateItems", baseUpdateItems)
         }
         // 进行模版变量替换
