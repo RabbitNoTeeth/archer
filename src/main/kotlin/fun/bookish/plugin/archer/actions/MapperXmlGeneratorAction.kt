@@ -53,9 +53,9 @@ class MapperXmlGeneratorAction : AnAction("`fun`.bookish.plugin.archer.actions.M
                 baseSaveValues += ",#{$fieldName}"
                 baseSaveBatchValues +=",#{item.$fieldName}"
                 baseUpdateItems += if(isStringType(field)){
-                    "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\t${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
+                    "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\t${fieldName2ColumnName(fieldName)} = #{$fieldName},\n\t\t\t</if>"
                 }else{
-                    "\n\t\t\t<if test=\"$fieldName != null\">\n\t\t\t\t${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
+                    "\n\t\t\t<if test=\"$fieldName != null\">\n\t\t\t\t${fieldName2ColumnName(fieldName)} = #{$fieldName},\n\t\t\t</if>"
                 }
             }
         }
