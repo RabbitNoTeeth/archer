@@ -18,40 +18,45 @@
     <actions>
         <group id="fun.bookish.plugin.archer.actions.GroupedActions" text="Archer代码生成" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <action class="fun.bookish.plugin.archer.actions.AllGenAction"
+                    id="fun.bookish.plugin.archer.actions.AllGenAction"
+                    text="快速一键生成"
+                    description="快速一键生成">
+            </action>
             <action class="fun.bookish.plugin.archer.actions.POMapperGenAction"
                     id="fun.bookish.plugin.archer.actions.POMapperGenAction"
-                    text="1.POMapper"
-                    description="1.POMapper">
+                    text="1. POMapper"
+                    description="1. POMapper">
             </action>
             <action class="fun.bookish.plugin.archer.actions.POMapperXmlGenAction"
                     id="fun.bookish.plugin.archer.actions.POMapperXmlGenAction"
-                    text="2.POMapperXml"
-                    description="2.POMapperXml">
+                    text="2. POMapperXml"
+                    description="2. POMapperXml">
             </action>
             <action class="fun.bookish.plugin.archer.actions.POPersisterGenAction"
                     id="fun.bookish.plugin.archer.actions.POPersisterGenAction"
-                    text="3.POPersister"
-                    description="3.POPersister">
+                    text="3. POPersister"
+                    description="3. POPersister">
             </action>
             <action class="fun.bookish.plugin.archer.actions.VOGenAction"
                     id="fun.bookish.plugin.archer.actions.VOGenAction"
-                    text="4.VO"
-                    description="4.VO">
+                    text="4. VO"
+                    description="4. VO">
             </action>
             <action class="fun.bookish.plugin.archer.actions.ServiceGenAction"
                     id="fun.bookish.plugin.archer.actions.ServiceGenAction"
-                    text="5.Service"
-                    description="5.Service">
+                    text="5. Service"
+                    description="5. Service">
             </action>
             <action class="fun.bookish.plugin.archer.actions.ServiceImplGenAction"
                     id="fun.bookish.plugin.archer.actions.ServiceImplGenAction"
-                    text="6.ServiceImpl"
-                    description="6.ServiceImpl">
+                    text="6. ServiceImpl"
+                    description="6. ServiceImpl">
             </action>
             <action class="fun.bookish.plugin.archer.actions.ControllerGenAction"
                     id="fun.bookish.plugin.archer.actions.ControllerGenAction"
-                    text="7.Controller"
-                    description="7.Controller">
+                    text="7. Controller"
+                    description="7. Controller">
             </action>
         </group>
     </actions>

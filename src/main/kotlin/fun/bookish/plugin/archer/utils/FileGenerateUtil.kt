@@ -74,7 +74,6 @@ object FileGenerateUtil {
 
         // 模版变量值
         val modelName = psiClass.name!!
-
         val modelVariableName = modelName[0].toLowerCase() + modelName.substring(1)
         val modelQualifiedName = psiClass.qualifiedName!!
         val mapperQualifiedName = PsiShortNamesCache.getInstance(project)
@@ -149,7 +148,35 @@ object FileGenerateUtil {
             runWriteAction {
                 val mapperInterfaceFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}Mapper.xml", XmlFileType.INSTANCE, content)
-                psiFile.parent!!.parent!!.add(mapperInterfaceFile)
+
+                val packageSplit = psiClass.qualifiedName!!.split(".")
+                val packageLevel = packageSplit.size
+                var targetDirectory = psiFile.parent!!
+                for(i in 1..packageLevel){
+                    targetDirectory = targetDirectory.parent!!
+                }
+
+                targetDirectory = targetDirectory.findSubdirectory("resources")!!
+
+                var tempDirectory = "mapper"
+                if(targetDirectory.findSubdirectory(tempDirectory) == null){
+                    targetDirectory.createSubdirectory(tempDirectory)
+                }
+                targetDirectory = targetDirectory.findSubdirectory(tempDirectory)!!
+
+                tempDirectory = packageSplit[packageLevel - 4]
+                if(targetDirectory.findSubdirectory(tempDirectory) == null){
+                    targetDirectory.createSubdirectory(tempDirectory)
+                }
+                targetDirectory = targetDirectory.findSubdirectory(tempDirectory)!!
+
+                tempDirectory = packageSplit[packageLevel - 3]
+                if(targetDirectory.findSubdirectory(tempDirectory) == null){
+                    targetDirectory.createSubdirectory(tempDirectory)
+                }
+                targetDirectory = targetDirectory.findSubdirectory(tempDirectory)!!
+
+                targetDirectory.add(mapperInterfaceFile)
             }
         }
     }
@@ -326,7 +353,7 @@ object FileGenerateUtil {
                 val targetFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}.java", JavaFileType.INSTANCE, content)
                 // 创建model包并将文件放入包中
-                psiFile.parent!!.add(targetFile)
+                psiFile.parent!!.parent!!.add(targetFile)
             }
         }
     }
