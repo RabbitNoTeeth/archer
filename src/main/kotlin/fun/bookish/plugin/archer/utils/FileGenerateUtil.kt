@@ -15,6 +15,10 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.psi.util.PsiTreeUtil
 import java.util.HashMap
+import com.sun.javafx.scene.CameraHelper.project
+import com.intellij.psi.JavaPsiFacade
+
+
 
 object FileGenerateUtil {
 
@@ -354,6 +358,14 @@ object FileGenerateUtil {
                         .createFileFromText("${modelName}.java", JavaFileType.INSTANCE, content)
                 // 创建model包并将文件放入包中
                 psiFile.parent!!.parent!!.add(targetFile)
+
+                val voClass = JavaPsiFacade.getInstance(project)
+                        .findClass("${packageName.substringBeforeLast(".")}.${modelName}", GlobalSearchScope.projectScope(project))
+                psiClass.fields.forEach {
+                    if(it.name != "serialVersionUID"){
+                        voClass!!.add(it)
+                    }
+                }
             }
         }
     }
