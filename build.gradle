@@ -21,7 +21,7 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2018.3.1'
+    version '2018.2.2'
 }
 patchPluginXml {
     changeNotes """

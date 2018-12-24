@@ -41,14 +41,18 @@ class MapperInterfaceGeneratorAction : AnAction("`fun`.bookish.plugin.archer.act
             put("modelQualifiedName", modelQualifiedName)
             put("baseMapperQualifiedName", baseMapperQualifiedName)
         }
+
         // 进行模版变量替换
         val content = Template.get("MapperInterface.ftl", data).replace("\r\n", "\n")
+
         // 生成mapper接口文件
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
+                // 创建mapper文件
                 val mapperInterfaceFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}Mapper.java", JavaFileType.INSTANCE, content)
-                psiFile.parent!!.add(mapperInterfaceFile)
+                // 创建mapper包并将文件放入包中
+                psiFile.parent!!.parent!!.createSubdirectory("mapper").add(mapperInterfaceFile)
             }
         }
 
