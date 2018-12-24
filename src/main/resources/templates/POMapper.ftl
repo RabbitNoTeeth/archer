@@ -7,5 +7,5 @@ import ${modelQualifiedName};
 
 @Mapper
 @Component
-public interface ${modelName}Mapper extends BaseMapper<${modelName}> {
+public interface ${modelName}Mapper extends BasePOMapper<${modelName}> {
 }
