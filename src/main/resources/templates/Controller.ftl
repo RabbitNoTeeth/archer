@@ -65,10 +65,10 @@ public class ${modelName}ManageController {
         return JsonResult.success("获取分页数据成功" , ${modelVariableName}VOList, ((Page)${modelVariableName}POList).getTotal());
     }
 
-    @GetMapping("/toolBar")
+    @GetMapping("/toolBarButtons")
     @ReadAccess(description = "")
     public JsonResult getToolBar(){
-        return JsonResult.success("获取工具栏按钮成功", ${modelVariableName}ManageService.getToolbarButtons());
+        return JsonResult.success("获取工具栏按钮成功", ${modelVariableName}ManageService.getToolBarButtons());
     }
 
     @GetMapping("/operatingButtons")

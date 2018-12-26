@@ -128,13 +128,13 @@
             1 = 1
             ${baseFindListByParamsItems}
         </where>
-        ORDER BY sort ASC , create_time DESC
+        ORDER BY sort ASC , created_time DESC
     </select>
 
     <!-- 查询所有 -->
     <select id="baseFindAll" resultMap="${modelVariableName}Map">
         SELECT * FROM ${tableName}
-        ORDER BY sort ASC , create_time DESC
+        ORDER BY sort ASC , created_time DESC
     </select>
 
 </mapper>
