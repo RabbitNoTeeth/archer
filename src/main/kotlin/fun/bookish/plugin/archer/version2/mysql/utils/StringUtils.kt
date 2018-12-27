@@ -1,4 +1,4 @@
-package `fun`.bookish.plugin.archer.utils
+package `fun`.bookish.plugin.archer.version2.mysql.utils
 
 import java.util.regex.Pattern
 

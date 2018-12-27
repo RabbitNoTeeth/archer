@@ -1,11 +1,11 @@
 package ${packageName};
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import ${baseVOQualifiedName};
 
-import java.io.Serializable;
-
-
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class ${modelName} implements Serializable {
+public class ${modelName} extends BaseVO {
 
 }

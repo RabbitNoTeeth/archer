@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fun.bookish.plugin'
-version '1.0-MYSQL'
+version 'version2.0-mysql'
 
 repositories {
     mavenCentral()
@@ -25,6 +25,5 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      适配BaseBackEndFrameWork version2.0版本规范 + Mysql数据库"""
 }

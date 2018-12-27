@@ -1,6 +1,6 @@
-package `fun`.bookish.plugin.archer.utils
+package `fun`.bookish.plugin.archer.version2.mysql.utils
 
-import `fun`.bookish.plugin.archer.template.Template
+import `fun`.bookish.plugin.archer.version2.mysql.template.Template
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -15,7 +15,6 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.psi.util.PsiTreeUtil
 import java.util.HashMap
-import com.sun.javafx.scene.CameraHelper.project
 import com.intellij.psi.JavaPsiFacade
 
 
@@ -342,10 +341,14 @@ object FileGenerateUtil {
         // 模版变量值
         val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
         val modelName = psiClass.name!!.replace("PO", "VO")
+        val baseVOQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("BaseVO", GlobalSearchScope.projectScope(project))[0]
+                .qualifiedName!!
 
         val data = HashMap<String, String>().apply {
             put("packageName", packageName)
             put("modelName", modelName)
+            put("baseVOQualifiedName", baseVOQualifiedName)
         }
 
         // 进行模版变量替换
