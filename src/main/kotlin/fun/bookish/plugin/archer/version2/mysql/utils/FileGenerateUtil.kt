@@ -93,7 +93,6 @@ object FileGenerateUtil {
         var baseSaveBatchValues = ""
         var baseUpdateItems = ""
         var baseUpdateBatchItems = ""
-        var baseDeleteByParamsItems = ""
         var baseFindListByParamsItems = ""
         psiClass.fields.forEach { field ->
             val fieldName = field.name
@@ -115,12 +114,6 @@ object FileGenerateUtil {
                     "\n\t\t\t\tWHEN #{item.id} THEN #{item.$fieldName}" +
                     "\n\t\t\t</foreach>,"
 
-                baseDeleteByParamsItems += if(isStringType(field)){
-                    "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
-                }else{
-                    "\n\t\t\t<if test=\"$fieldName != null\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
-                }
-
                 baseFindListByParamsItems += if(isStringType(field)){
                     "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} like CONCAT('%','\${$fieldName}','%')\n\t\t\t</if>"
                 }else{
@@ -140,7 +133,6 @@ object FileGenerateUtil {
             put("baseSaveBatchValues", baseSaveBatchValues)
             put("baseUpdateItems", baseUpdateItems)
             put("baseUpdateBatchItems", baseUpdateBatchItems)
-            put("baseDeleteByParamsItems", baseDeleteByParamsItems)
             put("baseFindListByParamsItems", baseFindListByParamsItems)
         }
 

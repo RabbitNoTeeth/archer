@@ -97,15 +97,6 @@
         </foreach>
     </delete>
 
-    <!-- 条件删除 -->
-    <delete id="baseDeleteByParams" parameterType="${modelQualifiedName}">
-        DELETE FROM ${tableName}
-        <where>
-            1 = 1
-            ${baseDeleteByParamsItems}
-        </where>
-    </delete>
-
     <!-- 根据id查询单个 -->
     <select id="baseFindById" parameterType="string" resultMap="${modelVariableName}Map">
         SELECT * FROM ${tableName}
