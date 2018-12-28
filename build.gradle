@@ -25,5 +25,5 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      适鑫达电商后端项目 基于BBEFW version2.0 + mysql规范"""
+      适配鑫达电商后端项目 基于BBEFW version2.0 + mysql规范"""
 }
