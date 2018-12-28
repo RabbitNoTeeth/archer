@@ -16,7 +16,7 @@
     </extensions>
 
     <actions>
-        <group id="fun.bookish.plugin.archer.version2.ironman.actions.GroupedActions" text="Archer代码生成(for IronMan)" popup="true">
+        <group id="fun.bookish.plugin.archer.version2.ironman.actions.GroupedActions" text="Archer代码生成(鑫达电商)" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <action class="fun.bookish.plugin.archer.version2.ironman.actions.AllGenAction"
                     id="fun.bookish.plugin.archer.version2.ironman.actions.AllGenAction"
