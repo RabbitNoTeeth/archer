@@ -1,6 +1,6 @@
-package `fun`.bookish.plugin.archer.version2.mysql.utils
+package `fun`.bookish.plugin.archer.version2.ironman.utils
 
-import `fun`.bookish.plugin.archer.version2.mysql.template.Template
+import `fun`.bookish.plugin.archer.version2.ironman.template.Template
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.actionSystem.AnActionEvent

@@ -1,6 +1,6 @@
-package `fun`.bookish.plugin.archer.version2.mysql.actions
+package `fun`.bookish.plugin.archer.version2.ironman.actions
 
-import `fun`.bookish.plugin.archer.version2.mysql.utils.FileGenerateUtil
+import `fun`.bookish.plugin.archer.version2.ironman.utils.FileGenerateUtil
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 

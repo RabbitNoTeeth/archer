@@ -1,9 +1,9 @@
 <idea-plugin>
-    <id>fun.bookish.plugin.archer.version2.mysql</id>
-    <name>Archer for BBEFW version2.0 and Mysql</name>
+    <id>fun.bookish.plugin.archer.version2.ironman</id>
+    <name>Archer for IronMan</name>
     <vendor email="864426487@qq.com" url="http://blog.bookish.fun">Liuxindong</vendor>
 
-    <description>鑫达智能后端项目代码生成器</description>
+    <description>鑫达电商后端项目代码生成器</description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -16,45 +16,45 @@
     </extensions>
 
     <actions>
-        <group id="fun.bookish.plugin.archer.version2.mysql.actions.GroupedActions" text="Archer代码生成(for BBEFW version2.0)" popup="true">
+        <group id="fun.bookish.plugin.archer.version2.ironman.actions.GroupedActions" text="Archer代码生成(for IronMan)" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.AllGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.AllGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.AllGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.AllGenAction"
                     text="快速一键生成"
                     description="快速一键生成">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.POMapperGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.POMapperGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.POMapperGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.POMapperGenAction"
                     text="1. POMapper"
                     description="1. POMapper">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.POMapperXmlGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.POMapperXmlGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.POMapperXmlGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.POMapperXmlGenAction"
                     text="2. POMapperXml"
                     description="2. POMapperXml">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.POPersisterGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.POPersisterGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.POPersisterGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.POPersisterGenAction"
                     text="3. POPersister"
                     description="3. POPersister">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.VOGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.VOGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.VOGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.VOGenAction"
                     text="4. VO"
                     description="4. VO">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.ServiceGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.ServiceGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.ServiceGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.ServiceGenAction"
                     text="5. Service"
                     description="5. Service">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.ServiceImplGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.ServiceImplGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.ServiceImplGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.ServiceImplGenAction"
                     text="6. ServiceImpl"
                     description="6. ServiceImpl">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.ControllerGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.ControllerGenAction"
+            <action class="fun.bookish.plugin.archer.version2.ironman.actions.ControllerGenAction"
+                    id="fun.bookish.plugin.archer.version2.ironman.actions.ControllerGenAction"
                     text="7. Controller"
                     description="7. Controller">
             </action>

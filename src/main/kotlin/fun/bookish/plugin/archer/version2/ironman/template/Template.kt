@@ -1,4 +1,4 @@
-package `fun`.bookish.plugin.archer.version2.mysql.template
+package `fun`.bookish.plugin.archer.version2.ironman.template
 
 import java.io.ByteArrayOutputStream
 import java.util.HashMap
