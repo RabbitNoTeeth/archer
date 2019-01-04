@@ -441,7 +441,14 @@ object FileGenerateUtil {
      */
     private fun isBaseType(psiField: PsiField): Boolean{
         val type = psiField.type.presentableText
-        return type == "String" || type == "Integer" || type == "Short" || type == "Long" || type == "Double" || type == "Float"
+        return type == "String" ||
+                type == "Integer" ||
+                type == "Short" ||
+                type == "Long" ||
+                type == "Double" ||
+                type == "Float" ||
+                type == "BigDecimal" ||
+                type == "Date"
     }
 
     /**

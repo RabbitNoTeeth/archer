@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fun.bookish.plugin'
-version 'version2.0-mysql'
+version 'ironman'
 
 repositories {
     mavenCentral()
