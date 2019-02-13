@@ -25,5 +25,5 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      适配BaseBackEndFrameWork version2.0版本规范 + Mysql数据库"""
+      适配aigner version1.0版本规范 + Mysql数据库"""
 }
