@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ${modelQualifiedName};
 import ${basePOMapperQualifiedName};
-import ${basePOPersisterQualifiedName};
+import ${basePOHandlerQualifiedName};
 import ${pOMapperQualifiedName};
 
 import java.util.List;
 
 @Service
-public class ${modelName}Persister implements BasePOPersister<${modelName}> {
+public class ${modelName}Handler implements BasePOHandler<${modelName}> {
 
     @Autowired
     private ${modelName}Mapper ${modelVariableName}Mapper;

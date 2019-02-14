@@ -8,10 +8,10 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 /**
  * 生成persister实现类的action
  */
-class POPersisterGenAction : AnAction("`fun`.bookish.plugin.archer.actions.POPersisterGenAction") {
+class POHandlerGenAction : AnAction("`fun`.bookish.plugin.archer.actions.POHandlerGenAction") {
 
     override fun actionPerformed(event: AnActionEvent) {
-        FileGenerateUtil.createPOPersister(event)
+        FileGenerateUtil.createPOHandler(event)
     }
 
 }

@@ -21,7 +21,7 @@
         (id, created_time, created_by, updated_time, updated_by, remarks, sort
         ${baseSaveColumns} )
         VALUES
-        (#{id}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remarks}, #{sort}
+        (#{id}, now(), #{createdBy}, now(), #{updatedBy}, #{remarks}, #{sort}
         ${baseSaveValues})
     </insert>
 
@@ -32,7 +32,7 @@
         ${baseSaveColumns})
         VALUES
         <foreach collection="beans" index="index" item="item" open="" separator="," close="">
-            (#{item.id}, #{item.createdTime}, #{item.createdBy}, #{item.updatedTime}, #{item.updatedBy}, #{item.remarks}, #{item.sort}
+            (#{item.id}, now(), #{item.createdBy}, now(), #{item.updatedBy}, #{item.remarks}, #{item.sort}
             ${baseSaveBatchValues})
         </foreach>
     </insert>
@@ -41,7 +41,7 @@
     <update id="baseUpdate" parameterType="${modelQualifiedName}">
         UPDATE ${tableName}
         <set>
-            updated_time = #{updatedTime},
+            updated_time = now(),
             updated_by = #{updatedBy},
             ${baseUpdateItems}
             <if test="remarks != null">
@@ -60,7 +60,7 @@
         <set>
             updated_time =
             <foreach collection="beans" item="item" index="index" separator=" " open="case id" close="end">
-                WHEN #{item.id} THEN #{item.updatedTime}
+                WHEN #{item.id} THEN now()
             </foreach>,
             updated_by =
             <foreach collection="beans" item="item" index="index" separator=" " open="case id" close="end">

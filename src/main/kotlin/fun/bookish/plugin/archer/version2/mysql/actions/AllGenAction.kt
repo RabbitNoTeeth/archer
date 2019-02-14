@@ -13,10 +13,8 @@ class AllGenAction : AnAction("`fun`.bookish.plugin.archer.actions.AllGenAction"
     override fun actionPerformed(event: AnActionEvent) {
         FileGenerateUtil.createPOMapper(event)
         FileGenerateUtil.createPOMapperXml(event)
-        FileGenerateUtil.createPOPersister(event)
+        FileGenerateUtil.createPOHandler(event)
         FileGenerateUtil.createVO(event)
-        FileGenerateUtil.createService(event)
-        FileGenerateUtil.createServiceImpl(event)
         FileGenerateUtil.createController(event)
     }
 
