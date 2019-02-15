@@ -304,7 +304,7 @@ object FileGenerateUtil {
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
                 val controllerFile = PsiFileFactory.getInstance(project)
-                        .createFileFromText("${modelName}ManageController.java", JavaFileType.INSTANCE, content)
+                        .createFileFromText("${modelName}Controller.java", JavaFileType.INSTANCE, content)
                 psiFile.parent!!.parent!!.add(controllerFile)
             }
         }

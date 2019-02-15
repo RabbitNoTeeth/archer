@@ -17,20 +17,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("")
-public class ${modelName}ManageController {
+public class ${modelName}Controller {
 
     @Autowired
     private ${modelName}POHandler ${modelVariableName}POHandler;
 
     @PostMapping("/add")
     public JsonResult add(@Validated ${modelName}VO ${modelVariableName}VO){
-        int res = ${modelVariableName}POHandler.baseSave(BeanUtil.convert(${modelVariableName}VO, ${modelName}PO.class));
+        int res = ${modelVariableName}POHandler.baseSave(BeanUtils.convert(${modelVariableName}VO, ${modelName}PO.class));
         return JsonResult.of(res > 0, "添加成功", "添加失败");
     }
 
     @PostMapping("/update")
     public JsonResult update(@Validated ${modelName}VO ${modelVariableName}VO){
-        int res = ${modelVariableName}POHandler.baseUpdate(BeanUtil.convert(${modelVariableName}VO, ${modelName}PO.class));
+        int res = ${modelVariableName}POHandler.baseUpdate(BeanUtils.convert(${modelVariableName}VO, ${modelName}PO.class));
         return JsonResult.of(res > 0, "更新成功", "更新失败");
     }
 
@@ -47,11 +47,10 @@ public class ${modelName}ManageController {
     }
 
     @GetMapping("/page")
-    @ReadAccess(description = "")
     public JsonResult page(@NotNull(message = "页码不能为空")Integer page, @NotNull(message = "页面大小不能为空") Integer pageSize, ${modelName}PO params){
         PageHelper.startPage(page, pageSize);
         List<${modelName}PO> ${modelVariableName}POList = ${modelVariableName}POHandler.baseFindListByParams(params);
-        List<${modelName}VO> ${modelVariableName}VOList = BeanUtil.convert(${modelVariableName}POList, ${modelName}VO.class);
+        List<${modelName}VO> ${modelVariableName}VOList = BeanUtils.convert(${modelVariableName}POList, ${modelName}VO.class);
         return JsonResult.success("获取分页数据成功" , ${modelVariableName}VOList, ((Page)${modelVariableName}POList).getTotal());
     }
 
