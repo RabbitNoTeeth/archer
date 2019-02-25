@@ -122,6 +122,16 @@
         ORDER BY sort ASC , created_time DESC
     </select>
 
+    <!-- 条件模糊查询列表 -->
+    <select id="baseFuzzyFindListByParams" parameterType="${modelQualifiedName}" resultMap="${modelVariableName}Map">
+        SELECT * FROM ${tableName}
+        <where>
+            1 = 1
+        ${baseFuzzyFindListByParamsItems}
+        </where>
+        ORDER BY sort ASC , created_time DESC
+    </select>
+
     <!-- 查询所有 -->
     <select id="baseFindAll" resultMap="${modelVariableName}Map">
         SELECT * FROM ${tableName}

@@ -94,6 +94,7 @@ object FileGenerateUtil {
         var baseUpdateItems = ""
         var baseUpdateBatchItems = ""
         var baseFindListByParamsItems = ""
+        var baseFuzzyFindListByParamsItems = ""
         psiClass.fields.forEach { field ->
             val fieldName = field.name
             if(fieldName != "serialVersionUID" && isBaseType(field)){
@@ -114,8 +115,14 @@ object FileGenerateUtil {
                     "\n\t\t\t\tWHEN #{item.id} THEN #{item.$fieldName}" +
                     "\n\t\t\t</foreach>,"
 
-                baseFindListByParamsItems += if(isStringType(field)){
+                baseFuzzyFindListByParamsItems += if(isStringType(field)){
                     "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} like CONCAT('%','\${$fieldName}','%')\n\t\t\t</if>"
+                }else{
+                    "\n\t\t\t<if test=\"$fieldName != null\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
+                }
+
+                baseFindListByParamsItems += if(isStringType(field)){
+                    "\n\t\t\t<if test=\"$fieldName != null and $fieldName != ''\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
                 }else{
                     "\n\t\t\t<if test=\"$fieldName != null\">\n\t\t\t\tAND ${fieldName2ColumnName(fieldName)} = #{$fieldName}\n\t\t\t</if>"
                 }
@@ -134,6 +141,7 @@ object FileGenerateUtil {
             put("baseUpdateItems", baseUpdateItems)
             put("baseUpdateBatchItems", baseUpdateBatchItems)
             put("baseFindListByParamsItems", baseFindListByParamsItems)
+            put("baseFuzzyFindListByParamsItems", baseFuzzyFindListByParamsItems)
         }
 
         // 进行模版变量替换
