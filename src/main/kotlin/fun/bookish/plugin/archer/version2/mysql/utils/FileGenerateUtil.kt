@@ -294,6 +294,10 @@ object FileGenerateUtil {
                 .getClassesByName("BeanUtils", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
+        val syncApiToDbQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("SyncApiToDb", GlobalSearchScope.projectScope(project))[0]
+                .qualifiedName!!
+
         val data = HashMap<String, String>().apply {
             put("packageName", packageName)
             put("modelName", modelName)
@@ -303,6 +307,7 @@ object FileGenerateUtil {
             put("modelVOQualifiedName", modelVOQualifiedName)
             put("modelPOHandlerQualifiedName", modelPOHandlerQualifiedName)
             put("beanUtilQualifiedName", beanUtilQualifiedName)
+            put("syncApiToDbQualifiedName", syncApiToDbQualifiedName)
         }
 
         // 进行模版变量替换
