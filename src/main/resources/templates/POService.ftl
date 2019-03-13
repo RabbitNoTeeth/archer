@@ -10,7 +10,7 @@ import ${pOMapperQualifiedName};
 import java.util.List;
 
 @Service
-public class ${modelName}Handler implements BasePOHandler<${modelName}> {
+public class ${modelName}Service implements BasePOService<${modelName}> {
 
     @Autowired
     private ${modelName}Mapper ${modelVariableName}Mapper;

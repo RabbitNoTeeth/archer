@@ -164,9 +164,9 @@ object FileGenerateUtil {
     }
 
     /**
-     * 创建POHandler文件
+     * 创建POService文件
      */
-    fun createPOHandler(event: AnActionEvent){
+    fun createPOService(event: AnActionEvent){
         val project = event.project!!
         val editor = event.getData(CommonDataKeys.EDITOR)
         val psiFile = event.getData(LangDataKeys.PSI_FILE)
@@ -185,7 +185,7 @@ object FileGenerateUtil {
                 .getClassesByName("${modelName}Mapper", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val basePOHandlerQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BasePOHandler", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("BasePOService", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val data = HashMap<String, String>().apply {
@@ -199,19 +199,19 @@ object FileGenerateUtil {
         }
 
         // 进行模版变量替换
-        val content = Template.get("POHandler.ftl", data).replace("\r\n", "\n")
+        val content = Template.get("POService.ftl", data).replace("\r\n", "\n")
 
         // 生成poHandler文件
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
                 // 创建poHandler文件
                 val poHandlerFile = PsiFileFactory.getInstance(project)
-                        .createFileFromText("${modelName}Handler.java", JavaFileType.INSTANCE, content)
+                        .createFileFromText("${modelName}Service.java", JavaFileType.INSTANCE, content)
                 // 创建handler包并将文件放入包中
                 val moduleDirectory = psiFile.parent!!.parent!!
-                var targetDirectory = moduleDirectory.findSubdirectory("handler")
+                var targetDirectory = moduleDirectory.findSubdirectory("service")
                 if(targetDirectory == null){
-                    targetDirectory = moduleDirectory.createSubdirectory("handler")
+                    targetDirectory = moduleDirectory.createSubdirectory("service")
                 }
                 targetDirectory.add(poHandlerFile)
             }
@@ -287,7 +287,7 @@ object FileGenerateUtil {
                 .qualifiedName!!
 
         val modelPOHandlerQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("${modelName}POHandler", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("${modelName}POService", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val beanUtilQualifiedName = PsiShortNamesCache.getInstance(project)

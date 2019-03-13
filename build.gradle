@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fun.bookish.plugin'
-version '-aigner-mysql-idea2018.1.2-v1.0.0'
+version 'aigner-idea2018.1.2'
 
 repositories {
     mavenCentral()

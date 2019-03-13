@@ -1,9 +1,9 @@
 <idea-plugin>
-    <id>fun.bookish.plugin.archer.version2.mysql</id>
-    <name>Archer for BBEFW version2.0 and Mysql</name>
+    <id>fun.bookish.plugin.archer.aigner.mysql.v1</id>
+    <name>Archer for aigner</name>
     <vendor email="864426487@qq.com" url="http://blog.bookish.fun">Liuxindong</vendor>
 
-    <description>aigner项目代码生成器</description>
+    <description>aigner框架代码生成器</description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -33,10 +33,10 @@
                     text="2. POMapperXml"
                     description="2. POMapperXml">
             </action>
-            <action class="fun.bookish.plugin.archer.version2.mysql.actions.POHandlerGenAction"
-                    id="fun.bookish.plugin.archer.version2.mysql.actions.POHandlerGenAction"
-                    text="3. POHandler"
-                    description="3. POHandler">
+            <action class="fun.bookish.plugin.archer.version2.mysql.actions.POServiceGenAction"
+                    id="fun.bookish.plugin.archer.version2.mysql.actions.POServiceGenAction"
+                    text="3. POService"
+                    description="3. POService">
             </action>
             <action class="fun.bookish.plugin.archer.version2.mysql.actions.VOGenAction"
                     id="fun.bookish.plugin.archer.version2.mysql.actions.VOGenAction"
