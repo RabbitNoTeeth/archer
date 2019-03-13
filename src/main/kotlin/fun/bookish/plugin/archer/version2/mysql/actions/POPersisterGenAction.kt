@@ -11,7 +11,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 class POPersisterGenAction : AnAction("`fun`.bookish.plugin.archer.actions.POPersisterGenAction") {
 
     override fun actionPerformed(event: AnActionEvent) {
-        FileGenerateUtil.createPOPersister(event)
+        FileGenerateUtil.createPOService(event)
     }
 
 }

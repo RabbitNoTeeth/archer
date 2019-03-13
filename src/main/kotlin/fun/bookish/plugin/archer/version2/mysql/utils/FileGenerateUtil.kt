@@ -36,7 +36,7 @@ object FileGenerateUtil {
         val modelName = psiClass.name!!
         val modelQualifiedName = psiClass.qualifiedName!!
         val baseMapperQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BasePOMapper", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("BaseMapper", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val data = HashMap<String, String>().apply {
             put("packageName", packageName)
@@ -144,33 +144,12 @@ object FileGenerateUtil {
                 val mapperInterfaceFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}Mapper.xml", XmlFileType.INSTANCE, content)
 
-                val packageSplit = psiClass.qualifiedName!!.split(".")
-                val packageLevel = packageSplit.size
-                var targetDirectory = psiFile.parent!!
-                for(i in 1..packageLevel){
-                    targetDirectory = targetDirectory.parent!!
+                // 创建mapper包并将文件放入包中
+                val moduleDirectory = psiFile.parent!!.parent!!
+                var targetDirectory = moduleDirectory.findSubdirectory("mapper")
+                if(targetDirectory == null){
+                    targetDirectory = moduleDirectory.createSubdirectory("mapper")
                 }
-
-                targetDirectory = targetDirectory.findSubdirectory("resources")!!
-
-                var tempDirectory = "mapper"
-                if(targetDirectory.findSubdirectory(tempDirectory) == null){
-                    targetDirectory.createSubdirectory(tempDirectory)
-                }
-                targetDirectory = targetDirectory.findSubdirectory(tempDirectory)!!
-
-                tempDirectory = packageSplit[packageLevel - 4]
-                if(targetDirectory.findSubdirectory(tempDirectory) == null){
-                    targetDirectory.createSubdirectory(tempDirectory)
-                }
-                targetDirectory = targetDirectory.findSubdirectory(tempDirectory)!!
-
-                tempDirectory = packageSplit[packageLevel - 3]
-                if(targetDirectory.findSubdirectory(tempDirectory) == null){
-                    targetDirectory.createSubdirectory(tempDirectory)
-                }
-                targetDirectory = targetDirectory.findSubdirectory(tempDirectory)!!
-
                 targetDirectory.add(mapperInterfaceFile)
             }
         }
@@ -179,7 +158,7 @@ object FileGenerateUtil {
     /**
      * 创建POPersister文件
      */
-    fun createPOPersister(event: AnActionEvent){
+    fun createPOService(event: AnActionEvent){
         val project = event.project!!
         val editor = event.getData(CommonDataKeys.EDITOR)
         val psiFile = event.getData(LangDataKeys.PSI_FILE)

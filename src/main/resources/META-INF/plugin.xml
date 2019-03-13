@@ -1,9 +1,9 @@
 <idea-plugin>
-    <id>fun.bookish.plugin.archer.version2.mysql</id>
-    <name>Archer for BBEFW version2.0 and Mysql</name>
+    <id>fun.bookish.plugin.archer.torqueverify.mysql.v1</id>
+    <name>Archer for torqueverify</name>
     <vendor email="864426487@qq.com" url="http://blog.bookish.fun">Liuxindong</vendor>
 
-    <description>鑫达智能后端项目代码生成器</description>
+    <description>torqueverify 项目代码生成器</description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->

@@ -10,7 +10,7 @@ import ${pOMapperQualifiedName};
 import java.util.List;
 
 @Service
-public class ${modelName}Persister implements BasePOPersister<${modelName}> {
+public class ${modelName}Service implements BaseService<${modelName}> {
 
     @Autowired
     private ${modelName}Mapper ${modelVariableName}Mapper;
