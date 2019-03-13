@@ -1,4 +1,4 @@
-package `fun`.bookish.plugin.archer.version2.mysql.utils
+package `fun`.bookish.plugin.archer.torqueverify.mysql.v1.utils
 
 import java.util.regex.Pattern
 

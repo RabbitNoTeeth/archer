@@ -16,7 +16,7 @@ public class ${modelName}Service implements BaseService<${modelName}> {
     private ${modelName}Mapper ${modelVariableName}Mapper;
 
     @Override
-    public BasePOMapper<${modelName}> getMapper() {
+    public BaseMapper<${modelName}> getMapper() {
         return ${modelVariableName}Mapper;
     }
 

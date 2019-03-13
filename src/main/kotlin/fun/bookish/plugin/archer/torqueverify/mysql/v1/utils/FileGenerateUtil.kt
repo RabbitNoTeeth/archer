@@ -1,6 +1,6 @@
-package `fun`.bookish.plugin.archer.version2.mysql.utils
+package `fun`.bookish.plugin.archer.torqueverify.mysql.v1.utils
 
-import `fun`.bookish.plugin.archer.version2.mysql.template.Template
+import `fun`.bookish.plugin.archer.torqueverify.mysql.v1.template.Template
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -171,13 +171,13 @@ object FileGenerateUtil {
         val modelVariableName = modelName[0].toLowerCase() + modelName.substring(1)
         val modelQualifiedName = psiClass.qualifiedName!!
         val basePOMapperQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BasePOMapper", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("BaseMapper", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val pOMapperQualifiedName = PsiShortNamesCache.getInstance(project)
                 .getClassesByName("${modelName}Mapper", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val basePOPersisterQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BasePOPersister", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("BaseService", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val data = HashMap<String, String>().apply {
@@ -191,19 +191,19 @@ object FileGenerateUtil {
         }
 
         // 进行模版变量替换
-        val content = Template.get("POPersister.ftl", data).replace("\r\n", "\n")
+        val content = Template.get("POService.ftl", data).replace("\r\n", "\n")
 
         // 生成persister文件
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
                 // 创建persister文件
                 val persisterFile = PsiFileFactory.getInstance(project)
-                        .createFileFromText("${modelName}Persister.java", JavaFileType.INSTANCE, content)
+                        .createFileFromText("${modelName}Service.java", JavaFileType.INSTANCE, content)
                 // 创建persist包并将文件放入包中
                 val moduleDirectory = psiFile.parent!!.parent!!
-                var targetDirectory = moduleDirectory.findSubdirectory("persist")
+                var targetDirectory = moduleDirectory.findSubdirectory("service")
                 if(targetDirectory == null){
-                    targetDirectory = moduleDirectory.createSubdirectory("persist")
+                    targetDirectory = moduleDirectory.createSubdirectory("service")
                 }
                 targetDirectory.add(persisterFile)
             }
@@ -222,7 +222,7 @@ object FileGenerateUtil {
 
         // 模版变量值
         val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
-        val modelName = psiClass.name!!.replace("PO", "Manage")
+        val modelName = psiClass.name!!.replace("PO", "")
         val buttonQualifiedName = PsiShortNamesCache.getInstance(project)
                 .getClassesByName("Button", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
@@ -241,13 +241,8 @@ object FileGenerateUtil {
                 // 创建service文件
                 val targetFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}Service.java", JavaFileType.INSTANCE, content)
-                // 创建service包并将文件放入包中
-                val moduleDirectory = psiFile.parent!!.parent!!
-                var targetDirectory = moduleDirectory.findSubdirectory("service")
-                if(targetDirectory == null){
-                    targetDirectory = moduleDirectory.createSubdirectory("service")
-                }
-                targetDirectory.add(targetFile)
+
+                psiFile.parent!!.parent!!.add(targetFile)
             }
         }
     }
@@ -264,19 +259,25 @@ object FileGenerateUtil {
 
         // 模版变量值
         val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
-        val modelName = psiClass.name!!.replace("PO", "Manage")
+        val modelName = psiClass.name!!.replace("PO", "")
+        val modelVariableName = modelName[0].toLowerCase() + modelName.substring(1)
+        val pOMapperQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("${modelName}POMapper", GlobalSearchScope.projectScope(project))[0]
+                .qualifiedName!!
         val buttonQualifiedName = PsiShortNamesCache.getInstance(project)
                 .getClassesByName("Button", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
-        val buttonUtilQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("ButtonUtil", GlobalSearchScope.projectScope(project))[0]
+        val buttonUtilsQualifiedName = PsiShortNamesCache.getInstance(project)
+                .getClassesByName("ButtonUtils", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val data = HashMap<String, String>().apply {
             put("packageName", packageName)
             put("modelName", modelName)
             put("buttonQualifiedName", buttonQualifiedName)
-            put("buttonUtilQualifiedName", buttonUtilQualifiedName)
+            put("modelVariableName", modelVariableName)
+            put("pOMapperQualifiedName", pOMapperQualifiedName)
+            put("buttonUtilsQualifiedName", buttonUtilsQualifiedName)
         }
 
         // 进行模版变量替换
@@ -288,13 +289,8 @@ object FileGenerateUtil {
                 // 创建service实现类文件
                 val targetFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}ServiceImpl.java", JavaFileType.INSTANCE, content)
-                // 创建service包并将文件放入包中
-                val moduleDirectory = psiFile.parent!!.parent!!
-                var targetDirectory = moduleDirectory.findSubdirectory("service")
-                if(targetDirectory == null){
-                    targetDirectory = moduleDirectory.createSubdirectory("service")
-                }
-                targetDirectory.add(targetFile)
+
+                psiFile.parent!!.parent!!.add(targetFile)
             }
         }
     }
@@ -311,9 +307,9 @@ object FileGenerateUtil {
 
         // 模版变量值
         val packageName = psiClass.qualifiedName!!.substringBeforeLast(".")
-        val modelName = psiClass.name!!.replace("PO", "VO")
+        val modelName = psiClass.name!!.replace("PO", "")
         val baseVOQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BaseVO", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("BaseModel", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val data = HashMap<String, String>().apply {
@@ -330,6 +326,7 @@ object FileGenerateUtil {
                 // 创建VO文件
                 val targetFile = PsiFileFactory.getInstance(project)
                         .createFileFromText("${modelName}.java", JavaFileType.INSTANCE, content)
+
                 // 创建model包并将文件放入包中
                 psiFile.parent!!.parent!!.add(targetFile)
 
@@ -366,7 +363,7 @@ object FileGenerateUtil {
                 .getClassesByName("WriteAccess", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val serviceQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("${modelName}ManageService", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("${modelName}Service", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
         val jsonResultQualifiedName = PsiShortNamesCache.getInstance(project)
                 .getClassesByName("JsonResult", GlobalSearchScope.projectScope(project))[0]
@@ -377,15 +374,15 @@ object FileGenerateUtil {
                 .qualifiedName!!
 
         val modelVOQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("${modelName}VO", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("${modelName}", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val modelPOPersisterQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("${modelName}POPersister", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("${modelName}POService", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val beanUtilQualifiedName = PsiShortNamesCache.getInstance(project)
-                .getClassesByName("BeanUtil", GlobalSearchScope.projectScope(project))[0]
+                .getClassesByName("BeanUtils", GlobalSearchScope.projectScope(project))[0]
                 .qualifiedName!!
 
         val data = HashMap<String, String>().apply {
@@ -409,7 +406,7 @@ object FileGenerateUtil {
         WriteCommandAction.runWriteCommandAction(project){
             runWriteAction {
                 val mapperInterfaceFile = PsiFileFactory.getInstance(project)
-                        .createFileFromText("${modelName}ManageController.java", JavaFileType.INSTANCE, content)
+                        .createFileFromText("${modelName}Controller.java", JavaFileType.INSTANCE, content)
                 psiFile.parent!!.parent!!.add(mapperInterfaceFile)
             }
         }

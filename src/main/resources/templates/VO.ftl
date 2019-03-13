@@ -6,6 +6,6 @@ import ${baseVOQualifiedName};
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ${modelName} extends BaseVO {
+public class ${modelName} extends BaseModel {
 
 }

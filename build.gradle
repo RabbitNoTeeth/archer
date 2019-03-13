@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fun.bookish.plugin'
-version 'version2.0-mysql'
+version 'torqueverify-idea2018.3.4'
 
 repositories {
     mavenCentral()
@@ -21,9 +21,9 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2018.1.2'
+    version '2018.3.4'
 }
 patchPluginXml {
     changeNotes """
-      适配BaseBackEndFrameWork version2.0版本规范 + Mysql数据库"""
+      适配torqueverify项目"""
 }
