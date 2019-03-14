@@ -5,10 +5,10 @@
     <!-- 实体映射集 -->
     <resultMap id="${modelVariableName}Map" type="${modelQualifiedName}">
         <id property="id" column="id"/>
-        <result property="createdTime" column="created_time"/>
-        <result property="createdBy" column="created_by"/>
-        <result property="updatedTime" column="updated_time"/>
-        <result property="updatedBy" column="updated_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
         <result property="remarks" column="remarks"/>
         <result property="sort" column="sort"/>
 
@@ -18,21 +18,21 @@
     <!-- 插入 -->
     <insert id="baseSave" parameterType="${modelQualifiedName}">
         INSERT INTO ${tableName}
-        (id, created_time, created_by, updated_time, updated_by, remarks, sort
+        (id, create_time, create_by, update_time, update_by, remarks, sort
         ${baseSaveColumns} )
         VALUES
-        (#{id}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remarks}, #{sort}
+        (#{id}, #{createTime}, #{createBy}, #{updateTime}, #{updateBy}, #{remarks}, #{sort}
         ${baseSaveValues})
     </insert>
 
     <!-- 批量插入 -->
     <insert id="baseSaveBatch" parameterType="${modelQualifiedName}">
         INSERT INTO ${tableName}
-        (id, created_time, created_by, updated_time, updated_by, remarks, sort
+        (id, create_time, create_by, update_time, update_by, remarks, sort
         ${baseSaveColumns})
         VALUES
         <foreach collection="beans" index="index" item="item" open="" separator="," close="">
-            (#{item.id}, #{item.createdTime}, #{item.createdBy}, #{item.updatedTime}, #{item.updatedBy}, #{item.remarks}, #{item.sort}
+            (#{item.id}, #{item.createTime}, #{item.createBy}, #{item.updateTime}, #{item.updateBy}, #{item.remarks}, #{item.sort}
             ${baseSaveBatchValues})
         </foreach>
     </insert>
@@ -41,8 +41,8 @@
     <update id="baseUpdate" parameterType="${modelQualifiedName}">
         UPDATE ${tableName}
         <set>
-            updated_time = #{updatedTime},
-            updated_by = #{updatedBy},
+            update_time = #{updateTime},
+            update_by = #{updateBy},
             ${baseUpdateItems}
             <if test="remarks != null">
                 remarks = #{remarks},
@@ -58,13 +58,13 @@
     <update id="baseUpdateBatch" parameterType="${modelQualifiedName}">
         UPDATE ${tableName}
         <set>
-            updated_time =
+            update_time =
             <foreach collection="beans" item="item" index="index" separator=" " open="case id" close="end">
-                WHEN #{item.id} THEN #{item.updatedTime}
+                WHEN #{item.id} THEN #{item.updateTime}
             </foreach>,
-            updated_by =
+            update_by =
             <foreach collection="beans" item="item" index="index" separator=" " open="case id" close="end">
-                WHEN #{item.id} THEN #{item.updatedBy}
+                WHEN #{item.id} THEN #{item.updateBy}
             </foreach>,
             ${baseUpdateBatchItems}
             remarks =
@@ -119,13 +119,13 @@
             1 = 1
             ${baseFindListByParamsItems}
         </where>
-        ORDER BY sort ASC , created_time DESC
+        ORDER BY sort ASC , create_time DESC
     </select>
 
     <!-- 查询所有 -->
     <select id="baseFindAll" resultMap="${modelVariableName}Map">
         SELECT * FROM ${tableName}
-        ORDER BY sort ASC , created_time DESC
+        ORDER BY sort ASC , create_time DESC
     </select>
 
 </mapper>
