@@ -1,4 +1,4 @@
-package `fun`.bookish.plugin.archer.torqueverify.mysql.v1.template
+package `fun`.bookish.plugin.archer.avengers.template
 
 import java.io.ByteArrayOutputStream
 import java.util.HashMap

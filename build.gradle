@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fun.bookish.plugin'
-version 'torqueverify-idea2018.3.5'
+version 'avengers-idea2018.1.2'
 
 repositories {
     mavenCentral()
@@ -21,9 +21,9 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2018.3.5'
+    version '2018.1.2'
 }
 patchPluginXml {
     changeNotes """
-      适配torqueverify项目"""
+      适配avengers项目"""
 }

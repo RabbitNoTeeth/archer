@@ -1,9 +1,9 @@
 <idea-plugin>
-    <id>fun.bookish.plugin.archer.torqueverify.mysql.v1</id>
-    <name>Archer for torqueverify</name>
+    <id>fun.bookish.plugin.archer.avengers</id>
+    <name>avengers代码生成器</name>
     <vendor email="864426487@qq.com" url="http://blog.bookish.fun">Liuxindong</vendor>
 
-    <description>torqueverify 代码生成器</description>
+    <description>avengers代码生成器</description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -16,47 +16,37 @@
     </extensions>
 
     <actions>
-        <group id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.GroupedActions" text="torqueverify 代码生成" popup="true">
+        <group id="fun.bookish.plugin.archer.avengers.actions.GroupedActions" text="avengers 代码生成" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.AllGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.AllGenAction"
+            <action class="fun.bookish.plugin.archer.avengers.actions.AllGenAction"
+                    id="fun.bookish.plugin.archer.avengers.actions.AllGenAction"
                     text="快速一键生成"
                     description="快速一键生成">
             </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.POMapperGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.POMapperGenAction"
-                    text="1. POMapper"
-                    description="1. POMapper">
+            <action class="fun.bookish.plugin.archer.avengers.actions.MapperGenAction"
+                    id="fun.bookish.plugin.archer.avengers.actions.MapperGenAction"
+                    text="1. Mapper"
+                    description="1. Mapper">
             </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.POMapperXmlGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.POMapperXmlGenAction"
-                    text="2. POMapperXml"
-                    description="2. POMapperXml">
+            <action class="fun.bookish.plugin.archer.avengers.actions.MapperXmlGenAction"
+                    id="fun.bookish.plugin.archer.avengers.actions.MapperXmlGenAction"
+                    text="2. MapperXml"
+                    description="2. MapperXml">
             </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.POServiceGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.POServiceGenAction"
-                    text="3. POService"
-                    description="3. POService">
+            <action class="fun.bookish.plugin.archer.avengers.actions.ServiceGenAction"
+                    id="fun.bookish.plugin.archer.avengers.actions.ServiceGenAction"
+                    text="3. Service"
+                    description="3. Service">
             </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.VOGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.VOGenAction"
-                    text="4. VO"
-                    description="4. VO">
+            <action class="fun.bookish.plugin.archer.avengers.actions.ServiceImplGenAction"
+                    id="fun.bookish.plugin.archer.avengers.actions.ServiceImplGenAction"
+                    text="4. ServiceImpl"
+                    description="4. ServiceImpl">
             </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.ServiceGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.ServiceGenAction"
-                    text="5. Service"
-                    description="5. Service">
-            </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.ServiceImplGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.ServiceImplGenAction"
-                    text="6. ServiceImpl"
-                    description="6. ServiceImpl">
-            </action>
-            <action class="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.ControllerGenAction"
-                    id="fun.bookish.plugin.archer.torqueverify.mysql.v1.actions.ControllerGenAction"
-                    text="7. Controller"
-                    description="7. Controller">
+            <action class="fun.bookish.plugin.archer.avengers.actions.ControllerGenAction"
+                    id="fun.bookish.plugin.archer.avengers.actions.ControllerGenAction"
+                    text="5. Controller"
+                    description="5. Controller">
             </action>
         </group>
     </actions>

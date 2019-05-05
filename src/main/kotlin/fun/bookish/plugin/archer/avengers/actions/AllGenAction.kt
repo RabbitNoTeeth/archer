@@ -1,6 +1,6 @@
-package `fun`.bookish.plugin.archer.torqueverify.mysql.v1.actions
+package `fun`.bookish.plugin.archer.avengers.actions
 
-import `fun`.bookish.plugin.archer.torqueverify.mysql.v1.utils.FileGenerateUtil
+import `fun`.bookish.plugin.archer.avengers.utils.FileGenerateUtil
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 
@@ -11,10 +11,8 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 class AllGenAction : AnAction("`fun`.bookish.plugin.archer.actions.AllGenAction") {
 
     override fun actionPerformed(event: AnActionEvent) {
-        FileGenerateUtil.createPOMapper(event)
-        FileGenerateUtil.createPOMapperXml(event)
-        FileGenerateUtil.createPOService(event)
-        FileGenerateUtil.createVO(event)
+        FileGenerateUtil.createMapper(event)
+        FileGenerateUtil.createMapperXml(event)
         FileGenerateUtil.createService(event)
         FileGenerateUtil.createServiceImpl(event)
         FileGenerateUtil.createController(event)

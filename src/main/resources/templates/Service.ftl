@@ -1,10 +1,11 @@
 package ${packageName};
 
 import ${buttonQualifiedName};
+import ${baseServiceQualifiedName};
 
 import java.util.List;
 
-public interface ${modelName}Service {
+public interface ${modelName}Service extends BaseService<${modelName}>{
 
     /**
      * 获取工具栏按钮

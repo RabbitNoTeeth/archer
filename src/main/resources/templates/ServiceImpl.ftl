@@ -3,8 +3,9 @@ package ${packageName};
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import ${buttonQualifiedName};
-import ${pOMapperQualifiedName};
-import ${buttonUtilsQualifiedName};
+import ${baseMapperQualifiedName};
+import ${modelServiceQualifiedName};
+import ${modelMapperQualifiedName};
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +14,18 @@ import java.util.List;
 public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Autowired
-    private ${modelName}POMapper ${modelVariableName}POMapper;
+    private ${modelName}Mapper ${modelVariableName}Mapper;
+
+    @Override
+    public BaseMapper<${modelName}> getMapper() {
+        return ${modelVariableName}Mapper;
+    }
 
     private final String WRITE_PERMISSION = "";
 
     @Override
     public List<Button> getToolBarButtons() {
-        return ButtonUtils.getToolbar(WRITE_PERMISSION, null, writeBtns -> {
+        return baseGetToolbar(WRITE_PERMISSION, null, writeBtns -> {
             writeBtns.add(Button.BTN_ADD);
             writeBtns.add(Button.BTN_DELETE);
         });
@@ -27,7 +33,7 @@ public class ${modelName}ServiceImpl implements ${modelName}Service {
 
     @Override
     public List<Button> getOperatingButtons() {
-        return ButtonUtils.getOperatingButtons(WRITE_PERMISSION, readBtns -> {
+        return baseGetOperatingButtons(WRITE_PERMISSION, readBtns -> {
             readBtns.add(Button.OPTION_INFO);
         }, writeBtns -> {
             writeBtns.add(Button.OPTION_EDIT);
