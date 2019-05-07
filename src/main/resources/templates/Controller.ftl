@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ${readAccessQualifiedName};
 import ${writeAccessQualifiedName};
 import ${serviceQualifiedName};
-import ${jsonResultQualifiedName};
+import com.sunvua.alan.base.json.JsonResult;
 import ${modelQualifiedName};
 
 import java.util.List;

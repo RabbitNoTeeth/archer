@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fun.bookish.plugin'
-version 'avengers-idea2018.1.2'
+version 'avengers-idea2018.2.5'
 
 repositories {
     mavenCentral()
@@ -21,7 +21,7 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2018.1.2'
+    version '2018.2.5'
 }
 patchPluginXml {
     changeNotes """
